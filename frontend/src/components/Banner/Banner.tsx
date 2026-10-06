@@ -3,8 +3,8 @@ import { Box, Stack, Typography } from '@mui/material';
 import { COLORS } from '../../theme/colors';
 
 type BannerProps = {
-  title: ReactNode;
-  description?: ReactNode;
+  title: string;
+  description?: string;
   image?: string;
   imageAlt?: string;
   imagePosition?: 'left' | 'right';
@@ -44,22 +44,25 @@ export const Banner = ({
       >
         <Typography
           component='h2'
-          sx={{ fontSize: { xs: 26, md: 32 }, fontWeight: 500, lineHeight: 1.25 }}
+          sx={{
+            fontSize: { xs: 26, md: 32 },
+            fontWeight: 500,
+            lineHeight: 1.25,
+          }}
         >
           {title}
         </Typography>
         {description && (
-          <Box
+          <Typography
             sx={{
               fontSize: 15,
               lineHeight: 1.6,
               opacity: 0.85,
-              '& p': { margin: 0 },
-              '& p + p': { marginTop: '12px' },
+              whiteSpace: 'pre-line',
             }}
           >
-            {typeof description === 'string' ? <p>{description}</p> : description}
-          </Box>
+            {description}
+          </Typography>
         )}
         {action && <Box>{action}</Box>}
       </Stack>
